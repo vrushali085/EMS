@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 import org.techhub.controller.AdminPannel;
 
-public class MainClass {
+public class MainClass { //main class
 
-	public static void main(String[] args) {   //main class
+	public static void main(String[] args) {   //main function
 		
 	Scanner scn = new Scanner(System.in);
 		
