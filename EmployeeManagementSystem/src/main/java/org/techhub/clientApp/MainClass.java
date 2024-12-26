@@ -3,7 +3,6 @@ package org.techhub.clientApp;
 import java.util.Scanner;
 
 import org.techhub.controller.AdminPannel;
-import org.techhub.controller.UserPanel;
 
 public class MainClass {
 
@@ -19,12 +18,10 @@ public class MainClass {
 			int choice = scn.nextInt();
 			
 			switch(choice) {
-						//case 1:
-				       //  AdminPannel.AdminLogin();
-				//break;2
-						case 2:
-							UserPanel.UserDashboard();
-							break;
+						case 1:
+				         AdminPannel.AdminLogin();
+				break;
+				
 				
 					
 				
