@@ -6,7 +6,7 @@ import org.techhub.controller.AdminPannel;
 
 public class MainClass {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {   //main class
 		
 	Scanner scn = new Scanner(System.in);
 		
@@ -19,7 +19,7 @@ public class MainClass {
 			
 			switch(choice) {
 						case 1:
-				AdminPannel.adminOperation();
+				//AdminPannel.adminOperation();
 				break;
 			
 			}

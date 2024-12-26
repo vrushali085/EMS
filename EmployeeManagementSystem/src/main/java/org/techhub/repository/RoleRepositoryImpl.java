@@ -8,23 +8,24 @@ public class RoleRepositoryImpl implements RoleRepository {
 
 	@Override
 	public boolean addNewRole(RoleModel role) {
-		try {
-            stmt = conn.prepareStatement("INSERT INTO role (rolename, role_description) VALUES (?, ?)");
-            stmt.setString(1, role.getRolename());
-            stmt.setString(2, role.getRole_description());
-
-            int value = stmt.executeUpdate();
-            return value > 0;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-           
-        } catch (Exception e) {
-            e.printStackTrace();
-            
-        }
-        return false;
-    }
+		return false;
+//		try {
+//            stmt = conn.prepareStatement("INSERT INTO role (rolename, role_description) VALUES (?, ?)");
+//            stmt.setString(1, role.getRolename());
+//            stmt.setString(2, role.getRole_description());
+//
+//            int value = stmt.executeUpdate();
+//            return value > 0;
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//           
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            
+//        }
+//        return false;
+//    }
 	}
 
 	@Override
