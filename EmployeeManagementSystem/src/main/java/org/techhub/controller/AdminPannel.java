@@ -1,16 +1,21 @@
 package org.techhub.controller;
 
-import java.util.*;
+import java.util.List;
 import java.util.Scanner;
 
+import org.techhub.model.AdminModel;
 import org.techhub.model.DepartmentModel;
 import org.techhub.model.EmployeeModel;
 import org.techhub.model.RoleModel;
+import org.techhub.service.AdminServiceImpl;
+import org.techhub.service.DepartmentService;
 import org.techhub.service.DepartmentServiceImpl;
+import org.techhub.service.EmployeeAssignmentService;
+import org.techhub.service.EmployeeAssignmentServiceImpl;
 import org.techhub.service.EmployeeService;
 import org.techhub.service.EmployeeServicempl;
+import org.techhub.service.IAdminService;
 import org.techhub.service.RoleService;
-import org.techhub.service.DepartmentService;
 import org.techhub.service.RoleServiceImpl;
 
 public class AdminPannel {
@@ -20,9 +25,28 @@ public class AdminPannel {
 	static RoleService roleService = new RoleServiceImpl();
 	static DepartmentService departmentService = new DepartmentServiceImpl();
 	private static EmployeeAssignmentService empAssignService = new EmployeeAssignmentServiceImpl();
+	private static IAdminService adminService = new AdminServiceImpl();
 
-	public static void AdminCurd() {
-
+	public static void AdminLogin() {
+		
+		System.out.println("Enter Username :: ");
+		String username = scn.nextLine();
+		System.out.println("Enter Password :: ");
+		String password = scn.nextLine();
+		
+		boolean flag = adminService.AdminLogin(username, password);
+		
+		if(flag ) {
+			System.out.println("Login Successfully...");
+			manageEmployeeDetails();
+		}else {
+			System.out.println("Login Faild Please Check username and password");
+		}
+		
+	}
+	
+	
+	public static void manageEmployeeDetails() {
 		System.out.println("------- Employee Management System ---------");
 
 		do {
@@ -42,7 +66,7 @@ public class AdminPannel {
 
 			case 1:
 
-				// addAdmin();
+				 addAdmin();
 				System.out.println();
 				break;
 
@@ -61,7 +85,7 @@ public class AdminPannel {
 				System.out.println();
 				break;
 			case 5:
-				assignEmployeToRole();
+				//assignEmployeToRole();
 				System.out.println();
 				break;
 				
@@ -76,6 +100,27 @@ public class AdminPannel {
 			}
 		} while (true);
 
+	}
+	
+	public static void addAdmin() {
+		
+		scn.nextLine();
+		System.out.println("Enter User Name :: ");
+		String username = scn.nextLine();
+		System.out.println("Enter Password :: ");
+		String password = scn.nextLine();
+
+		AdminModel admin = new AdminModel();
+		admin.setUsername(username);
+		admin.setPassword(password);
+		
+		boolean flag = adminService.isAddNewAdmin(admin);
+		
+		if (flag) {
+			System.out.println("Admin Added Successfully...");
+		} else {
+			System.out.println("Admin Not Added.");
+		}
 	}
 
 	public static void employeManage() {
