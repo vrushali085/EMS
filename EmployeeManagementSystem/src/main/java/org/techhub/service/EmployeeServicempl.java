@@ -9,7 +9,7 @@ import org.techhub.repository.EmployeeRepositoryImpl;
 public class EmployeeServicempl implements EmployeeService {
 
 	EmployeeRepository empRepo = new EmployeeRepositoryImpl();
-	
+
 	@Override
 	public boolean isAddNewEmp(EmployeeModel model) {
 		
@@ -17,9 +17,30 @@ public class EmployeeServicempl implements EmployeeService {
 	}
 
 	@Override
-	public List<EmployeeModel> showAllEmployees() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<EmployeeModel> showAllEmployee() {
+		
+		return empRepo.showAllEmployee();
 	}
 
-}
+	@Override
+	public List<EmployeeModel> getEmployeesByName(String name) {
+		
+		return empRepo.getEmployeesByName(name);
+	}
+
+	@Override
+	public boolean deleteEmployeeByName(String name) {
+		
+		return empRepo.deleteEmployeeByName(name);
+	}
+
+	@Override
+	public boolean updateEmployeeByName(String newName, int age, String gender, int salary, String oldName) {
+		
+		return empRepo.updateEmployeeByName(newName, age, gender, salary, oldName);
+	}
+	
+	
+	}
+
+
