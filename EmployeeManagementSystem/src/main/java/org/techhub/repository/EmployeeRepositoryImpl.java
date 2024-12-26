@@ -47,6 +47,8 @@ public class EmployeeRepositoryImpl extends DBSTATE implements EmployeeRepositor
             employee.setGender(rs.getString("gender"));
             employee.setSalary(rs.getInt("salary"));
             employeeList.add(employee);
+            
+            return employeeList;
 		}
 		}
 		catch(Exception ex)

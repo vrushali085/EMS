@@ -19,8 +19,11 @@ public class MainClass {
 			
 			switch(choice) {
 						case 1:
-				         AdminPannel.AdminCurd();
+				         AdminPannel.AdminLogin();
 				break;
+				
+				
+					
 				
 						default:
 							System.out.println("ENTER VALID CHOICE ");
