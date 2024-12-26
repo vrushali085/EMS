@@ -498,9 +498,13 @@ public class AdminPannel {
 	    switch (choice) {
 	        case 1:
 	            // Logic for assigning role
+	        	assignRoleToEmployee();
+	        	System.out.println();
 	            break;
 	        case 2:
-	            // Logic for assigning department
+	        	// Logic for assigning department
+	        	assignDepartmentToEmployee();
+	        	System.out.println();
 	            break;
 	        case 3:
 	            // Logic for viewing assignments
@@ -523,5 +527,57 @@ public class AdminPannel {
 	            System.out.println("Invalid Choice");
 	    }
 	}
+	
+	public static void assignRoleToEmployee() {
+	    scn.nextLine(); // Clear the scanner buffer
+	    System.out.println("Enter Employee ID:");
+	    int employeeId = scn.nextInt();
+	    scn.nextLine(); // Clear the scanner buffer
+	    System.out.println("Enter Role Name:");
+	    int roleId = scn.nextInt();
+
+	    // Call the service layer to assign the role
+	    boolean flag = empAssignService.assignRoleToEmployee(employeeId, roleId);
+	    if (flag) {
+	        System.out.println("Role assigned to employee successfully.");
+	    } else {
+	        System.out.println("Failed to assign role. Please check the provided details.");
+	    }
+	}
+	
+	public static void assignDepartmentToEmployee() {
+	    scn.nextLine(); // Clear the scanner buffer
+	    System.out.println("Enter Employee Name:");
+	    String employeeName = scn.nextLine();
+	    System.out.println("Enter Department id:");
+	    int departmentId = scn.nextInt();
+
+	    // Call the service layer to assign the department
+	    boolean flag = empAssignService.assignDepartmentToEmployeeByName(employeeName, departmentId);
+	    if (flag) {
+	        System.out.println("Department assigned to employee successfully.");
+	    } else {
+	        System.out.println("Failed to assign department. Please check the provided details.");
+	    }
+	}
+	
+	public static void assignRoleToEmployee() {
+	    scn.nextLine(); // Clear the scanner buffer
+	    System.out.println("Enter Employee ID:");
+	    int employeeId = scn.nextInt();
+	    scn.nextLine(); // Clear the scanner buffer
+	    System.out.println("Enter Role Name:");
+	    String roleName = scn.nextLine();
+
+	    // Call the service layer to assign the role
+	    boolean flag = empAssignService.assignRoleToEmployee(employeeId, roleName);
+	    if (flag) {
+	        System.out.println("Role assigned to employee successfully.");
+	    } else {
+	        System.out.println("Failed to assign role. Please check the provided details.");
+	    }
+	}
+
+
 
 }
