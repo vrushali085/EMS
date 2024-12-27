@@ -43,7 +43,7 @@ public class UserPanel {
             System.out.println("<<<-- Enter 3 FOR View Attendance History -->>> ");
             System.out.println("<<<-- Enter 4 FOR Request Leave -->>> ");
             System.out.println("<<<-- Enter 5 FOR View Reports -->>> ");
-            System.out.println("<<<-- Enter 6 FOR Log Out -->>> ");
+            System.out.println("<<<-- Enter 6 FOR Log Out -->>> ");																																																																																																																																																															
             System.out.print("Enter Your Choice :: ");
             
             int choice = scn.nextInt();

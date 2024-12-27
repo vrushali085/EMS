@@ -4,6 +4,7 @@ import java.util.List;
 
 import java.util.Scanner;
 
+import org.techhub.clientApp.MainClass;
 import org.techhub.model.AdminModel;
 import org.techhub.model.DepartmentModel;
 import org.techhub.model.EmployeeModel;
@@ -19,15 +20,27 @@ import org.techhub.service.IAdminService;
 import org.techhub.service.RoleService;
 import org.techhub.service.RoleServiceImpl;
 
-public class AdminPannel {
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.SimpleLayout;
 
+
+public class AdminPannel {
+	static Logger logger = Logger.getLogger(MainClass.class);
+	static {
+		   SimpleLayout layout=new SimpleLayout();
+		   ConsoleAppender appender=new ConsoleAppender(layout);
+		   logger.addAppender(appender);
+		   logger.setLevel(Level.DEBUG);
+	   }
 	static Scanner scn = new Scanner(System.in);
 	static EmployeeService empService = new EmployeeServiceImpl();
 	static RoleService roleService = new RoleServiceImpl();
 	static DepartmentService departmentService = new DepartmentServiceImpl();
 	private static EmployeeAssignmentService empAssignService = new EmployeeAssignmentServiceImpl();
 	private static IAdminService adminService = new AdminServiceImpl();
-
+ 
 	public static void AdminLogin() {
 		
 		System.out.println("Enter Username :: ");
@@ -38,9 +51,11 @@ public class AdminPannel {
 		boolean flag = adminService.AdminLogin(username, password);
 		
 		if(flag ) {
+			logger.info("Admin Login Successfully");
 			System.out.println("Login Successfully...");
 			manageEmployeeDetails();
 		}else {
+			logger.error("Login Failed check username and password");
 			System.out.println("Login Faild Please Check username and password");
 		}
 		
@@ -49,7 +64,7 @@ public class AdminPannel {
 	
 	public static void manageEmployeeDetails() {
 		System.out.println("------- Employee Management System ---------");
-
+           
 		do {
 			System.out.println("<<<-- Enter 1 FOR ADD NEW ADMIN -->>> ");
 			System.out.println("<<<-- Enter 2 FOR Employee Manage -->>> ");
@@ -91,7 +106,8 @@ public class AdminPannel {
 				break;
 				
 
-			case 6:
+			case 6:System.out.println("Exiting Admin Pannel");
+			      logger.debug("Exiting Admin Pannel");
 				
 				return;
 
@@ -118,13 +134,16 @@ public class AdminPannel {
 		boolean flag = adminService.isAddNewAdmin(admin);
 		
 		if (flag) {
+			logger.info("Admin Added Successfully");
 			System.out.println("Admin Added Successfully...");
 		} else {
+			logger.error("Admin Not added ");
 			System.out.println("Admin Not Added.");
 		}
 	}
 
 	public static void employeManage() {
+	
 		do {
 			System.out.println("1.Add new Employee");
 			System.out.println("2.View All employee");
@@ -187,8 +206,10 @@ public class AdminPannel {
 		emp.setSalary(salary);
 		boolean flag = empService.isAddNewEmp(emp);
 		if (flag) {
+			logger.info("employee details added Successfully");
 			System.out.println("employee Details Added Successully...");
 		} else {
+			logger.error("Employee details not added ");
 			System.out.println("employee Not Added.");
 		}
 
@@ -238,8 +259,10 @@ public class AdminPannel {
 		// Call the update method in the service layer
 		boolean flag = empService.updateEmployeeByName(newName, newAge, newGender, newSalary, oldName);
 		if (flag) {
+			logger.info("Employee details updated Successfully");
 			System.out.println("Employee details updated successfully.");
 		} else {
+			logger.error("Failed to update employee details");
 			System.out.println("Failed to update employee details. Please check the provided name.");
 		}
 	}
@@ -252,8 +275,10 @@ public class AdminPannel {
 		// Call the delete method in the service layer
 		boolean flag = empService.deleteEmployeeByName(name);
 		if (flag) {
+			logger.info("Employee deleted  Successfully");
 			System.out.println("Employee deleted successfully.");
 		} else {
+			logger.error("Failed to delete employee");
 			System.out.println("Failed to delete employee. Please check the provided name.");
 		}
 	}
@@ -315,8 +340,10 @@ public class AdminPannel {
 		// Call the add method in the service layer
 		boolean flag = roleService.addNewRole(role);
 		if (flag) {
+			logger.info("Role Added Successfully");
 			System.out.println("Role added successfully.");
 		} else {
+			logger.error("Failed to add role");
 			System.out.println("Failed to add role.");
 		}
 	}
@@ -353,8 +380,10 @@ public class AdminPannel {
 		// Call the update method in the service layer
 		boolean flag = roleService.updateRoleByName(newName, newDescription, oldName);
 		if (flag) {
+			logger.info("role details updated Successfully");
 			System.out.println("Role details updated successfully.");
 		} else {
+			logger.error("Failed to update role details");
 			System.out.println("Failed to update role details. Please check the provided name.");
 		}
 	}
@@ -367,8 +396,10 @@ public class AdminPannel {
 		// Call the delete method in the service layer
 		boolean flag = roleService.deleteRoleByName(name);
 		if (flag) {
+			logger.info("Role deleted Successfully");
 			System.out.println("Role deleted successfully.");
 		} else {
+			logger.error("failed to delete role");
 			System.out.println("Failed to delete role. Please check the provided name.");
 		}
 	}
@@ -426,8 +457,10 @@ public class AdminPannel {
 		// Call the add method in the service layer
 		boolean flag = departmentService.addNewDepartment(department);
 		if (flag) {
+			logger.info("Department added Successfully");
 			System.out.println("Department added successfully.");
 		} else {
+			logger.error("Failed to add department");
 			System.out.println("Failed to add department.");
 		}
 	}
@@ -464,8 +497,10 @@ public class AdminPannel {
 		// Call the update method in the service layer
 		boolean flag = departmentService.updateDepartmentByName(newName, newLocation, oldName);
 		if (flag) {
+			logger.info("Department Details Added Successfully");
 			System.out.println("Department details updated successfully.");
 		} else {
+			logger.error("Failed to update");
 			System.out.println("Failed to update department details. Please check the provided name.");
 		}
 	}
@@ -478,8 +513,10 @@ public class AdminPannel {
 		// Call the delete method in the service layer
 		boolean flag = departmentService.deleteDepartmentByName(name);
 		if (flag) {
+			logger.info("Department deleted Successfully");
 			System.out.println("Department deleted successfully.");
 		} else {
+			logger.error("Failed to delete department");
 			System.out.println("Failed to delete department. Please check the provided name.");
 		}
 	}
