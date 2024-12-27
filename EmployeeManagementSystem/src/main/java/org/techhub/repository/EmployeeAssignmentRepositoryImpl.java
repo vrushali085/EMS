@@ -1,11 +1,24 @@
 package org.techhub.repository;
 
 import java.sql.*;
+
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.SimpleLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeAssignmentRepositoryImpl extends DBSTATE implements EmployeeAssignmentRepository {
-
+	private static Logger logger= Logger.getLogger(DBConfing.class);
+	
+	 static {
+		   SimpleLayout layout=new SimpleLayout();
+		   ConsoleAppender appender=new ConsoleAppender(layout);
+		   logger.addAppender(appender);
+		   logger.setLevel(Level.DEBUG);
+	   }
     @Override
     public boolean isAssignRoleToEmployee(int employeeId, int roleId) {
         try {
@@ -15,11 +28,14 @@ public class EmployeeAssignmentRepositoryImpl extends DBSTATE implements Employe
 
             int value = stmt.executeUpdate();
             if (value > 0) {
+            	logger.info("Role Assignment Successful");
                 return true; // Role assignment successful
             } else {
+            	logger.error("Failed to assign Role");
                 return false; // Failed to assign role
             }
         } catch (SQLException ex) {
+        	logger.error("SQL Exception");
             System.out.println("Error while assigning role: " + ex);
         }
         return false;
@@ -37,6 +53,7 @@ public class EmployeeAssignmentRepositoryImpl extends DBSTATE implements Employe
                 roles.add(rs.getInt("role_id"));
             }
         } catch (SQLException ex) {
+        	logger.error("SQL Exception");
             System.out.println("Error while fetching roles: " + ex);
         }
         return roles;
@@ -52,11 +69,14 @@ public class EmployeeAssignmentRepositoryImpl extends DBSTATE implements Employe
 
             int value = stmt.executeUpdate();
             if (value > 0) {
+            	logger.info("Role Removed Successfully");
                 return true; // Role removed successfully
             } else {
+            	logger.error("Failed to Remove Role");
                 return false; // Failed to remove role
             }
         } catch (SQLException ex) {
+        	logger.error("SQl Exceprion");
             System.out.println("Error while removing role: " + ex);
         }
         return false;

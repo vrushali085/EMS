@@ -45,6 +45,8 @@ public class AdminPannel {
 		
 		System.out.println("Enter Username :: ");
 		String username = scn.nextLine();
+		
+		    
 		System.out.println("Enter Password :: ");
 		String password = scn.nextLine();
 		

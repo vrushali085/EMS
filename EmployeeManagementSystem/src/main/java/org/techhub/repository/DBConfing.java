@@ -56,7 +56,7 @@ public class DBConfing {
 			 
 		 }
 		 else {
-			 logger.info("Database Connection Failed");
+			 logger.error("Database Connection Failed");
 			 System.out.println("Database connection failed");
 		 }
 			
