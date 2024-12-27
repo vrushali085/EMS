@@ -7,7 +7,10 @@ public interface EmployeeAssignmentRepository {
     List<Integer> getRolesForEmployee(int employeeId);
     boolean removeRoleFromEmployee(int employeeId, int roleId);
     boolean assignDepartmentToEmployee(int employeeId, int departmentId);
-    List<Integer> getDepartmentsForEmployee(int employeeId);
+    List<String> getDepartmentNamesForEmployee(int employeeId);
     boolean removeDepartmentFromEmployee(int employeeId, int departmentId);
+    public List<String> getRoleNamesForEmployee(int employeeId);
+    public boolean updateRoleForEmployee(int employeeId, String oldRoleName, String newRoleName);
+    public boolean updateDepartmentForEmployee(int employeeId, String currentDepartmentName, String newDepartmentName);
 
 }

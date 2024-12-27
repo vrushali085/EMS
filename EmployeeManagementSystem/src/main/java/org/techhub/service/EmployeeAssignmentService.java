@@ -7,6 +7,7 @@ public interface EmployeeAssignmentService {
 
 	    // Method to get the list of roles assigned to an employee
 	    List<Integer> getRolesForEmployee(int employeeId);
+	    List<String> getRoleNamesForEmployee(int employeeId);
 
 	    // Method to remove a specific role from an employee
 	    boolean removeRoleFromEmployee(int employeeId, int roleId);
@@ -15,9 +16,12 @@ public interface EmployeeAssignmentService {
 	    boolean assignDepartmentToEmployee(int employeeId, int departmentId);
 
 	    // Method to get the list of departments assigned to an employee
-	    List<Integer> getDepartmentsForEmployee(int employeeId);
+	    List<String> getDepartmentNamesForEmployee(int employeeId);
 
 	    // Method to remove a specific department from an employee
 	    boolean removeDepartmentFromEmployee(int employeeId, int departmentId);
+	    public boolean updateRoleForEmployee(int employeeId, String oldRoleName, String newRoleName);
+	    public boolean updateDepartmentForEmployee(int employeeId, String currentDepartmentName, String newDepartmentName);
+
 
 }

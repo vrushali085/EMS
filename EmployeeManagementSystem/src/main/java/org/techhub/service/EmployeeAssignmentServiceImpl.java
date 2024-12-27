@@ -1,44 +1,57 @@
 package org.techhub.service;
 
+import org.techhub.repository.EmployeeAssignmentRepository;
+import org.techhub.repository.EmployeeAssignmentRepositoryImpl;
 import java.util.List;
 
 public class EmployeeAssignmentServiceImpl implements EmployeeAssignmentService {
 
-	@Override
-	public boolean assignRoleToEmployee(int employeeId, int roleId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    // Instantiating the repository implementation
+    EmployeeAssignmentRepository empRepo = new EmployeeAssignmentRepositoryImpl();
 
-	@Override
-	public List<Integer> getRolesForEmployee(int employeeId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public boolean assignRoleToEmployee(int employeeId, int roleId) {
+        return empRepo.isAssignRoleToEmployee(employeeId, roleId);
+    }
 
-	@Override
-	public boolean removeRoleFromEmployee(int employeeId, int roleId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public List<Integer> getRolesForEmployee(int employeeId) {
+        return empRepo.getRolesForEmployee(employeeId);
+    }
 
-	@Override
-	public boolean assignDepartmentToEmployee(int employeeId, int departmentId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public List<String> getRoleNamesForEmployee(int employeeId) {
+        return empRepo.getRoleNamesForEmployee(employeeId);
+    }
 
-	@Override
-	public List<Integer> getDepartmentsForEmployee(int employeeId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public boolean removeRoleFromEmployee(int employeeId, int roleId) {
+        return empRepo.removeRoleFromEmployee(employeeId, roleId);
+    }
 
-	@Override
-	public boolean removeDepartmentFromEmployee(int employeeId, int departmentId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
+    @Override
+    public boolean assignDepartmentToEmployee(int employeeId, int departmentId) {
+        return empRepo.assignDepartmentToEmployee(employeeId, departmentId);
+    }
+
+    @Override
+    public List<String> getDepartmentNamesForEmployee(int employeeId) {
+        return empRepo.getDepartmentNamesForEmployee(employeeId);
+    }
+
+    @Override
+    public boolean removeDepartmentFromEmployee(int employeeId, int departmentId) {
+        return empRepo.removeDepartmentFromEmployee(employeeId, departmentId);
+    }
+
+    @Override
+    public boolean updateRoleForEmployee(int employeeId, String oldRoleName, String newRoleName) {
+        return empRepo.updateRoleForEmployee(employeeId, oldRoleName, newRoleName);
+    }
+    @Override
+    public boolean updateDepartmentForEmployee(int employeeId, String currentDepartmentName, String newDepartmentName) {
+        // Delegates the department update request to the repository
+        return empRepo.updateDepartmentForEmployee(employeeId, currentDepartmentName, newDepartmentName);
+    }
 
 }

@@ -1,6 +1,8 @@
 package org.techhub.service;
 
 import java.util.List;
+import java.util.Map;
+
 import org.techhub.model.RoleModel;
 import org.techhub.repository.EmployeeRepository;
 import org.techhub.repository.EmployeeRepositoryImpl;
@@ -42,4 +44,9 @@ public class RoleServiceImpl implements RoleService {
         
         return roleRepo.updateRoleByName(newName, newDescription, oldName);
     }
+    @Override
+    public List<Map<String, Object>> showRolesAndEmployees() {
+        return roleRepo.showRolesAndEmployees();
+    }
+
 }

@@ -8,6 +8,7 @@ public interface EmployeeRepository {
 	public boolean isAddNewEmp(EmployeeModel model);
     public List<EmployeeModel> showAllEmployee();
     public List<EmployeeModel> getEmployeesByName(String name);
+    public EmployeeModel getEmployeeById(int employeeId) ;
     //new changes
     public boolean deleteEmployeeByName(String name);
     public boolean updateEmployeeByName(String newName, int age, String gender, int salary, String oldName);

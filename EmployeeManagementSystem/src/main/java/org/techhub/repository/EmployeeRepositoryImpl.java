@@ -30,7 +30,7 @@ public class EmployeeRepositoryImpl extends DBSTATE implements EmployeeRepositor
 		
 		return false;
 	}
-
+/*
 	@Override
 	public List<EmployeeModel> showAllEmployee() {
 		List<EmployeeModel> employeeList = new ArrayList<>();
@@ -57,6 +57,29 @@ public class EmployeeRepositoryImpl extends DBSTATE implements EmployeeRepositor
 		}
 		
 		return null;
+	}
+*/
+	@Override
+	public List<EmployeeModel> showAllEmployee() {
+	    List<EmployeeModel> employeeList = new ArrayList<>();
+	    try {
+	        stmt = conn.prepareStatement("SELECT * FROM employee");
+	        rs = stmt.executeQuery();
+
+	        while (rs.next()) {
+	            EmployeeModel employee = new EmployeeModel();
+	            employee.setEmployee_id(rs.getInt("employee_id"));
+	            employee.setEmployeename(rs.getString("employeename"));
+	            employee.setAge(rs.getInt("age"));
+	            employee.setGender(rs.getString("gender"));
+	            employee.setSalary(rs.getInt("salary"));
+	            employeeList.add(employee);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return employeeList;
 	}
 
 	@Override
@@ -109,8 +132,33 @@ public class EmployeeRepositoryImpl extends DBSTATE implements EmployeeRepositor
 	    return false;
 	}
 
-	
-		
+	@Override
+	public EmployeeModel getEmployeeById(int employeeId) {
+	    String query = "SELECT * FROM employee WHERE employee_id = ?";
+	    EmployeeModel employee = null;
+
+	    try {
+	        stmt = conn.prepareStatement(query);
+	        stmt.setInt(1, employeeId);
+	        rs = stmt.executeQuery();
+
+	        if (rs.next()) {
+	            int empId = rs.getInt("employee_id");
+	            String name = rs.getString("employeename");
+	            int age = rs.getInt("age");
+	            String gender = rs.getString("gender");
+	            int salary = rs.getInt("salary");
+
+	            // Correctly construct an EmployeeModel object
+	            employee = new EmployeeModel(empId, name, age, gender, salary);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return employee; // Return null if no employee is found
+	}
+
 		@Override
 		public boolean updateEmployeeByName(String newName, int age, String gender, int salary, String oldName) {
 		    try {
