@@ -16,7 +16,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     private AttendanceRepository attendanceRepo = new AttendanceRepositoryImpl();
     private EmployeeRepository employeeRepo = new EmployeeRepositoryImpl(); // Create a repository instance.
-   
+    //EmployeeModel employee = employeeRepo.getEmployeeById(employeeId);
 
     @Override
     public boolean markAttendance(AttendanceModel attendance) {
@@ -28,7 +28,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         return attendanceRepo.getAttendanceByEmployeeId(employeeId);  // Delegate to repository
     }
     public double calculateSalary(int employeeId, LocalDate startDate, LocalDate endDate) {
-        
+        // Get attendance summary from the repository
         Map<String, Integer> attendanceSummary = attendanceRepo.getAttendanceSummary(employeeId, startDate, endDate);
         EmployeeModel employee = employeeRepo.getEmployeeById(employeeId);
         System.out.println("Attendance Summary: " + attendanceSummary);
@@ -42,7 +42,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         double dailySalary = employee.getSalary() / 30.0; // Assuming 30 days in a month.
         double totalSalary = 0;
 
-       
+        // Loop through the attendance summary and calculate the salary
         for (Map.Entry<String, Integer> entry : attendanceSummary.entrySet()) {
             String status = entry.getKey();
             int count = entry.getValue();
