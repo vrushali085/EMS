@@ -12,5 +12,6 @@ public interface EmployeeService {
 	public List<EmployeeModel> getEmployeesByName(String name) ;
 	public boolean deleteEmployeeByName(String name);
 	public boolean updateEmployeeByName(String newName, int age, String gender, int salary, String oldName);
+	public EmployeeModel getEmployeeDetailsById(int empId);
 
 }

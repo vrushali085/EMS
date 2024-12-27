@@ -1,6 +1,7 @@
 package org.techhub.controller;
 
 import java.util.List;
+
 import java.util.Scanner;
 
 import org.techhub.model.AdminModel;
@@ -13,7 +14,7 @@ import org.techhub.service.DepartmentServiceImpl;
 import org.techhub.service.EmployeeAssignmentService;
 import org.techhub.service.EmployeeAssignmentServiceImpl;
 import org.techhub.service.EmployeeService;
-import org.techhub.service.EmployeeServicempl;
+import org.techhub.service.EmployeeServiceImpl;
 import org.techhub.service.IAdminService;
 import org.techhub.service.RoleService;
 import org.techhub.service.RoleServiceImpl;
@@ -21,7 +22,7 @@ import org.techhub.service.RoleServiceImpl;
 public class AdminPannel {
 
 	static Scanner scn = new Scanner(System.in);
-	static EmployeeService empService = new EmployeeServicempl();
+	static EmployeeService empService = new EmployeeServiceImpl();
 	static RoleService roleService = new RoleServiceImpl();
 	static DepartmentService departmentService = new DepartmentServiceImpl();
 	private static EmployeeAssignmentService empAssignService = new EmployeeAssignmentServiceImpl();

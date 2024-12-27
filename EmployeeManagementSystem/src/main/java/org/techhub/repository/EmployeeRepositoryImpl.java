@@ -137,8 +137,37 @@ public class EmployeeRepositoryImpl extends DBSTATE implements EmployeeRepositor
 
 		    return false;
 		}
+		
+		@Override
+		public EmployeeModel getEmployeeDetailsById(int empId) {
+		    EmployeeModel employee = null;
+		    try {
+		        stmt = conn.prepareStatement("SELECT * FROM employee WHERE employee_id = ?");
+		        stmt.setInt(1, empId);
+		        rs = stmt.executeQuery();
 
-	}
+		        if (rs.next()) {
+		            employee = new EmployeeModel();
+		            employee.setEmployee_id(rs.getInt("employee_id"));
+		            employee.setEmployeename(rs.getString("employeename"));
+		            employee.setAge(rs.getInt("age"));
+		            employee.setGender(rs.getString("gender"));
+		            employee.setSalary(rs.getInt("salary"));
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } catch (Exception ex) {
+		        System.out.println("Error: " + ex);
+		    }
+		    return employee;
+		}
+
+
+			
+			
+		}
+
+	
 	
 	
 
